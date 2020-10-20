@@ -3,7 +3,8 @@ An R wrapper for the [Cancer Genome Interpreter](https://www.cancergenomeinterpr
 
 
 Cancer Genome Interpreter (CGI) is designed to support the identification of tumor alterations that drive the disease and detect those that may be therapeutically actionable. CGI relies on existing knowledge collected from several resources and on computational methods that annotate the alterations in a tumor according to distinct levels of evidence. 
-Please cite their paper which is available [here](https://doi.org/10.1186/s13073-018-0531-8)
+
+Please cite their paper which is available [here](https://doi.org/10.1186/s13073-018-0531-8).
 
 
 
