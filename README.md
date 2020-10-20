@@ -14,7 +14,7 @@ This wrapper talks to the CGI API and will
 	- delete the job from the esrver
 
 
-#### Wrapper Usage
+### Wrapper Usage
 
 ```
 Usage: CGIwrapper.R [options]
@@ -56,15 +56,22 @@ Options:
 ```
 
 
+
 #### Obtaining API token
 Users can request an API token associated with an email address. This is required to use the API service. Instructions can be found [here](https://www.cancergenomeinterpreter.org/rest_api#obtain_token).
 
 
+
+
 #### Authentication
 Can be provided in 2 ways. 
-	1. As command line arguments for the wrapper script. 
-	2. In a hidden file in the project directory. 
-		Create a file named `.auth.json` and add in your authentication details with the format shown below.
+
+1. As command line arguments for the wrapper script. 
+	
+2. In a hidden file in the project directory. 
+	
+Create a file named `.auth.json` and add in your authentication details with the format shown below.
+	
 
 ```
 {
@@ -76,12 +83,16 @@ Can be provided in 2 ways.
 If both command line arguments and .auth.json have authentication details, the arguments will be used. 
 
 
+
+
 #### Input
 Inputs can be mutations, copy numbers or fusions, each type in its own file. Atleast one file is required. 
 
 They need to be in the format as described by CGI [here](https://www.cancergenomeinterpreter.org/faq#q13).
 
 Example inputs are provided in the data subfolder. 
+
+
 
 
 #### Output
