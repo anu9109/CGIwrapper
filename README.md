@@ -99,7 +99,8 @@ Example inputs are provided in the data subfolder.
 Results are downloaded and provided as a .zip file in the specified directory. 
 
 
-
+#### Docker
+`docker run -it anu9109/cgiwrapper Rscript CGIwrapper.R -h`
 
 
 

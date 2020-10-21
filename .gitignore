@@ -1,0 +1,10 @@
+# RStudio
+.Rproj.user/
+.Rhistory
+
+# secrets
+.auth.json
+
+# dev only
+extra.R
+test/
