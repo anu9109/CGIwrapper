@@ -9,10 +9,14 @@ Please cite their paper which is available [here](https://doi.org/10.1186/s13073
 
 
 This wrapper talks to the CGI API and will 
+
 	- check API and authentication status
+	
 	- submit a job given input files
+	
 	- download analysis results
-	- delete the job from the esrver
+	
+	- delete the job from the server
 
 
 ### Wrapper Usage
