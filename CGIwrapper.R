@@ -7,6 +7,7 @@ shhh(library(tidyverse))
 shhh(library(optparse))
 shhh(library(rlang))
 shhh(library(here))
+shhh(library(fs))
 
 
 # parse input arguments
@@ -17,6 +18,8 @@ option_list <- list(
   make_option(c("-t", "--token"), action = "store", type = "character",
               help = "API token obtained from the CGI website (required)
               (can also provide in .auth.json)"),
+  make_option(c("-a", "--auth"), action = "store", type = "character", default = ".auth.json",
+              help = "Hidden file containing authentication details"), 
   make_option(c("-i", "--id"), action = "store", type = "character",
               help = "Provide an ID for the CGI job (required)"),
   make_option(c("-m", "--mut"), action = "store", type = "character", default = NULL, 
@@ -53,7 +56,7 @@ cgi_checkAuth <- function() {
   }
   else {
     # check for .auth.json file next
-    secret <- here(".auth.json")
+    secret <- if_else(file.exists(here(".auth.json")), here(".auth.json"), opt$auth)
     if (file.exists(secret)) {
       s <- read_json(secret)
       email <- s$email
@@ -109,9 +112,9 @@ cgi_checkService <- function(api_url, header) {
 cgi_submitJob <- function(api_url, header, mut, cna, fus, cancer_type, id){
   r <- POST(url = api_url,
             header,
-            body = list(mutations = if(is.null(mut)) NULL else upload_file(mut),
-                        cnas = if(is.null(cna)) NULL else upload_file(cna),
-                        translocations = if(is.null(fus)) NULL else upload_file(fus)),
+            body = list(mutations = if(is_file_empty(mut)) NULL else upload_file(mut),
+                        cnas = if(is_file_empty(cna)) NULL else upload_file(cna),
+                        translocations = if(is_file_empty(fus)) NULL else upload_file(fus)),
             query = list(cancer_type = cancer_type, title = id))
   job_id <- content(r)
   out <- list("job_info" = r,
