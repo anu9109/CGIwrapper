@@ -8,7 +8,7 @@ Please cite their paper which is available [here](https://doi.org/10.1186/s13073
 
 
 
-This wrapper talks to the CGI API and will 
+This wrapper talks to the CGI API and will:  
 - check API and authentication status
 - submit a job given input files
 - download analysis results
@@ -23,12 +23,13 @@ R wrapper for the CGI API to submit, download and delete jobs
 
 Options:
 	-e EMAIL, --email=EMAIL
-		Email address authorized to access the CGI API (required)
-              (can also provide in .auth.json)
+		Email address authorized to access the CGI API
 
 	-t TOKEN, --token=TOKEN
-		API token obtained from the CGI website (required)
-              (can also provide in .auth.json)
+		API token obtained from the CGI website
+
+	-a AUTH, --auth=AUTH
+		Hidden file containing authentication details (recommended)
 
 	-i ID, --id=ID
 		Provide an ID for the CGI job (required)
@@ -53,7 +54,6 @@ Options:
 
 	-h, --help
 		Show this help message and exit
-
 ```
 
 
@@ -69,7 +69,7 @@ Can be provided in 2 ways.
 
 1. As command line arguments for the wrapper script. 
 	
-2. In a hidden file in the project directory. 
+2. In a hidden file in the project directory itself, or any specified location (recommended).
 	
 Create a file named `.auth.json` and add in your authentication details with the format shown below.
 	
@@ -81,6 +81,7 @@ Create a file named `.auth.json` and add in your authentication details with the
 }
 ```
 
+Using a hidden file is the recommended way to provide details. Note that, if you use arguments then your authentication details will be stored in your log files, which is not secure. 
 If both command line arguments and .auth.json have authentication details, the arguments will be used. 
 
 
@@ -100,9 +101,25 @@ Example inputs are provided in the data subfolder.
 Results are downloaded and provided as a .zip file in the specified directory. 
 
 
-#### Docker
+#### Use with Docker
+
+For help:
+
 `docker run -it anu9109/cgiwrapper Rscript CGIwrapper.R -h`
 
+
+To run the wrapper script:
+```
+docker run -v /path/to/input:/path/to/input -v $PWD/.auth.json:/.auth.json -it anu9109/cgiwrapper \ 
+	Rscript CGIwrapper.R \ 
+		-i $ID \ 
+		-m /path/to/input/muts_in.tsv \ 
+		-c /path/to/input/cna_in.tsv \ 
+		-f /path/to/input/fus_in.tsv \ 
+		-o /path/to/output/
+```
+
+Make sure to give docker access to your input files and authentication file.
 
 
 

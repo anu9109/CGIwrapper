@@ -13,13 +13,11 @@ shhh(library(fs))
 # parse input arguments
 option_list <- list(
   make_option(c("-e", "--email"), action = "store", type = "character",
-              help = "Email address authorized to access the CGI API (required)
-              (can also provide in .auth.json)"),
+              help = "Email address authorized to access the CGI API"),
   make_option(c("-t", "--token"), action = "store", type = "character",
-              help = "API token obtained from the CGI website (required)
-              (can also provide in .auth.json)"),
+              help = "API token obtained from the CGI website"),
   make_option(c("-a", "--auth"), action = "store", type = "character", default = ".auth.json",
-              help = "Hidden file containing authentication details"), 
+              help = "Hidden file containing authentication details (recommended)"), 
   make_option(c("-i", "--id"), action = "store", type = "character",
               help = "Provide an ID for the CGI job (required)"),
   make_option(c("-m", "--mut"), action = "store", type = "character", default = NULL, 
