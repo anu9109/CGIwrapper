@@ -82,7 +82,7 @@ Create a file named `.auth.json` and add in your authentication details with the
 ```
 
 Using a hidden file is the recommended way to provide details. Note that, if you use arguments then your authentication details will be stored in your log files, which is not secure. 
-If both command line arguments and .auth.json have authentication details, the arguments will be used. 
+If both command line arguments and .auth.json are provided, the arguments will be used. 
 
 
 
@@ -110,7 +110,7 @@ For help:
 
 To run the wrapper script:
 ```
-docker run -v /path/to/input:/path/to/input -v $PWD/.auth.json:/.auth.json -it anu9109/cgiwrapper \ 
+docker run -v /path/to/input:/path/to/input -v /path/to/.auth.json:/.auth.json -it anu9109/cgiwrapper \ 
 	Rscript CGIwrapper.R \ 
 		-i $ID \ 
 		-m /path/to/input/muts_in.tsv \ 
