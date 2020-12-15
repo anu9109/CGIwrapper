@@ -135,12 +135,26 @@ cgi_getJobStatus <- function(job_url, header){
 
 # download results
 cgi_downloadJob <- function(job_url, header, outpath, id){
+  
+  # outpath manipulation to make sure results are downloaded correctly when script is run standalone or through nf
+  # if outpath is provided then add a trailing backslash to acommodate for paste0 in the following write_delim
+  if (outpath != "nf") {
+    outpath <- path_tidy(outpath)
+    outpath <- paste0(outpath, "/")
+    
+    if (!dir_exists(outpath)) {
+      dir_create(outpath)
+    } 
+  } else {
+    outpath <- "" # this is for the following paste0 to work correctly with nf pipeline
+  }
+  
   outfile <- paste0(outpath, id, ".zip")
   download <- GET(url = job_url,
              header,
              write_disk(outfile, overwrite = T),
              query = list(action = "download"))
-  message(paste0("Downloaded results at: ", outpath, id, ".zip"))
+  message(paste0("Downloaded results: ", outpath, id, ".zip"))
   return(download)
 }
 
