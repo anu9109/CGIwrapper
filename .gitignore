@@ -1,10 +1,13 @@
 # RStudio
 .Rproj.user/
 .Rhistory
+.DS_Store
+.Rbuildignore
 
 # secrets
 .auth.json
 
 # dev only
-extra.R
+R/extra.R
 test/
+.Rproj.user
