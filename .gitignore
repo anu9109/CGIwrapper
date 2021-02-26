@@ -11,3 +11,4 @@
 R/extra.R
 test/
 .Rproj.user
+man/*
